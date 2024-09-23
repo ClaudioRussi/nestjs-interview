@@ -54,6 +54,7 @@ describe('TodoListsController', () => {
       expect(todoListsController.create({ name: 'new' })).toEqual({
         id: 3,
         name: 'new',
+        items: []
       });
 
       expect(todoListService.all().length).toBe(3);

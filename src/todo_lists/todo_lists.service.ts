@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateTodoListDto } from './dtos/create-todo_list';
 import { UpdateTodoListDto } from './dtos/update-todo_list';
 import { TodoList } from '../interfaces/todo_list.interface';
+import { ElementNotFoundError } from '../common/exceptions/element-not-found.error';
 
 @Injectable()
 export class TodoListsService {
@@ -23,6 +24,7 @@ export class TodoListsService {
     const todoList: TodoList = {
       id: this.nextId(),
       name: dto.name,
+      items: []
     };
 
     this.todolists.push(todoList);
@@ -54,5 +56,13 @@ export class TodoListsService {
       .reverse()[0];
 
     return last ? last + 1 : 1;
+  }
+
+  getTodoList(id: number) {
+    const todoList = this.get(id);
+    if(!todoList) {
+      throw new ElementNotFoundError(`Todolist with id ${id} not found`);
+    }
+    return todoList;
   }
 }
