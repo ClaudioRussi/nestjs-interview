@@ -4,19 +4,6 @@ import { CreateItemDto } from './dto/create-item.dto';
 import { BatchUpdateDto } from './dto/batch-update.dto';
 import { ElementNotFoundError } from '../common/exceptions/element-not-found.error';
 
-/* 
-  Traer items asociados a lista
-  leer item especifico de lista
-  Agregar item a lista
-  Borrar item de lista
-  Completar item
-
-
-  Agregar error handling con diferentes error responses,
-  Agregar background job para maracar complete un batch de items gigante
-  Agregar test unitaros a el controller
-
-*/
 
 @Controller('api/todolists/:todoListId/items')
 export class ItemsController {
